@@ -170,6 +170,39 @@ h6 {
   }
 }
 
+@media (max-width: 576px) {
+  #header h1 {
+    font-size: 26px;
+    letter-spacing: -0.5px;
+  }
+
+  #header h2 {
+    font-size: 15px;
+    line-height: 24px;
+    margin-top: 10px;
+  }
+
+  #header .container {
+    padding: 20px 16px;
+    width: 96%;
+    border-radius: 14px;
+  }
+
+  #header .social-links {
+    margin-top: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  #header .social-links a {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+    margin-right: 0;
+  }
+}
+
 /* Header Top */
 #header.header-top {
   height: 80px;
@@ -386,11 +419,30 @@ section .container {
 
 @media (max-width: 768px) {
   section {
-    top: 120px;
+    top: 100px;
   }
 
   section.section-show {
-    top: 80px;
+    top: 65px;
+  }
+
+  section .container {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  section {
+    top: 90px;
+  }
+
+  section.section-show {
+    top: 62px;
+    padding-bottom: 30px;
+  }
+
+  section .container {
+    padding: 16px 12px;
   }
 }
 
@@ -1286,4 +1338,188 @@ section .container {
 --------------------------------------------------------------*/
 .btn-outline-success.text-dark:hover {
   color: #fff !important;
+}
+
+/*--------------------------------------------------------------
+# Mobile Responsiveness – Global Improvements
+--------------------------------------------------------------*/
+
+/* ---- Section title ---- */
+@media (max-width: 768px) {
+  .section-title p {
+    font-size: 26px;
+  }
+
+  .section-title h2::after {
+    width: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title p {
+    font-size: 22px;
+  }
+}
+
+/* ---- About Me ---- */
+@media (max-width: 768px) {
+  .about-me .content h3 {
+    font-size: 20px;
+    margin-top: 16px;
+  }
+
+  .about-me .content ul li {
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+}
+
+/* ---- Counts ---- */
+@media (max-width: 576px) {
+  .counts {
+    padding: 50px 0 40px;
+  }
+
+  .counts .count-box {
+    padding: 30px 15px 20px 15px;
+    margin-bottom: 30px;
+  }
+}
+
+/* ---- Skills – force single column on small phones ---- */
+@media (max-width: 576px) {
+  .skills .progress .skill {
+    font-size: 12px;
+  }
+}
+
+/* ---- Resume ---- */
+@media (max-width: 768px) {
+  .section-title .d-flex.justify-content-between {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section-title .d-flex.justify-content-between p {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .resume .resume-title {
+    font-size: 20px;
+  }
+
+  .resume .resume-item h4 {
+    font-size: 16px;
+  }
+
+  .resume .resume-item h5 {
+    font-size: 14px;
+    padding: 4px 10px;
+    white-space: normal;
+  }
+}
+
+/* ---- Portfolio filters – allow horizontal scroll on very small screens ---- */
+@media (max-width: 576px) {
+  .portfolio #portfolio-flters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2px 8px;
+  }
+
+  .portfolio #portfolio-flters li {
+    font-size: 12px;
+    padding: 6px 10px 8px 10px;
+    margin: 0 2px 8px 2px;
+  }
+}
+
+/* ---- Portfolio item heights on mobile ---- */
+@media (max-width: 480px) {
+  .portfolio .portfolio-item.portfolio-item-mobile .portfolio-wrap {
+    height: 360px;
+  }
+
+  .portfolio .portfolio-item.portfolio-item-web .portfolio-wrap {
+    height: 180px;
+  }
+}
+
+/* ---- Contact info-box – prevent icon overlap at narrow widths ---- */
+@media (max-width: 576px) {
+  .contact .info-box {
+    padding: 16px;
+  }
+
+  .contact .info-box i.bx {
+    float: none;
+    display: block;
+    margin: 0 auto 10px auto;
+    padding: 10px;
+    font-size: 20px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .contact .info-box h3 {
+    margin: 0 0 6px 0;
+    text-align: center;
+    font-size: 17px;
+  }
+
+  .contact .info-box p {
+    margin: 0;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .contact .info-box .social-links {
+    margin: 8px 0 0 0;
+    justify-content: center;
+  }
+
+  .contact .php-email-form {
+    padding: 20px 14px;
+  }
+}
+
+/* ---- Header-top navbar: allow wrapping on very small screens ---- */
+@media (max-width: 480px) {
+  #header.header-top h1 {
+    font-size: 20px;
+  }
+
+  #header.header-top {
+    height: auto;
+    min-height: 60px;
+    padding: 8px 0;
+    flex-wrap: wrap;
+  }
+
+  #header.header-top .container {
+    padding: 0 12px;
+    width: 100%;
+    border-radius: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* ---- General: prevent horizontal overflow on all screens ---- */
+body {
+  overflow-x: hidden;
+}
+
+img, video {
+  max-width: 100%;
 }
