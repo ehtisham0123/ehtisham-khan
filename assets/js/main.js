@@ -45,97 +45,110 @@
   }
 
   /**
-   * Mobile nav toggle
+   * Top Navbar - Hamburger toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('#navbar').classList.toggle('navbar-mobile')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
+  const hamburger = document.getElementById('topnavHamburger');
+  const mobileMenu = document.getElementById('topnavMobileMenu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+  }
+
+
 
   /**
-   * Scrool with ofset on links with a class name .scrollto
+   * Top Navbar - Section show/hide on link click
    */
-  on('click', '#navbar .nav-link', function(e) {
-    let section = select(this.hash)
-    if (section) {
-      e.preventDefault()
+  function closeTopnavMobile() {
+    if (mobileMenu && mobileMenu.classList.contains('open')) {
+      mobileMenu.classList.remove('open');
+      hamburger && hamburger.classList.remove('open');
+      hamburger && hamburger.setAttribute('aria-expanded', 'false');
+    }
+  }
 
-      let navbar = select('#navbar')
-      let header = select('#header')
-      let sections = select('section', true)
-      let navlinks = select('#navbar .nav-link', true)
-
-      navlinks.forEach((item) => {
-        item.classList.remove('active')
-      })
-
-      this.classList.add('active')
-
-      if (navbar.classList.contains('navbar-mobile')) {
-        navbar.classList.remove('navbar-mobile')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
+  function setActiveNavLink(href) {
+    document.querySelectorAll('.topnav-link').forEach(function (lnk) {
+      lnk.classList.remove('active');
+      if (lnk.getAttribute('href') === href) {
+        lnk.classList.add('active');
       }
+    });
+  }
 
-      if (this.hash == '#header') {
-        header.classList.remove('header-top')
-        sections.forEach((item) => {
-          item.classList.remove('section-show')
-        })
+  document.querySelectorAll('.topnav-link').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (!targetId || !targetId.startsWith('#')) return;
+      e.preventDefault();
+
+      const header   = document.getElementById('header');
+      const allSections = document.querySelectorAll('section');
+
+      closeTopnavMobile();
+      setActiveNavLink(targetId);
+
+      // Home — collapse header back to hero, hide all sections
+      if (targetId === '#hero') {
+        header && header.classList.remove('header-top');
+        allSections.forEach(function (s) { s.classList.remove('section-show'); });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
 
-      if (!header.classList.contains('header-top')) {
-        header.classList.add('header-top')
-        setTimeout(function() {
-          sections.forEach((item) => {
-            item.classList.remove('section-show')
-          })
-          section.classList.add('section-show')
+      // Section link — compact header, show target section
+      const targetSection = document.querySelector(targetId);
+      if (!targetSection) return;
 
+      if (!header.classList.contains('header-top')) {
+        header.classList.add('header-top');
+        setTimeout(function () {
+          allSections.forEach(function (s) { s.classList.remove('section-show'); });
+          targetSection.classList.add('section-show');
         }, 350);
       } else {
-        sections.forEach((item) => {
-          item.classList.remove('section-show')
-        })
-        section.classList.add('section-show')
+        allSections.forEach(function (s) { s.classList.remove('section-show'); });
+        targetSection.classList.add('section-show');
       }
 
-      scrollto(this.hash)
-    }
-  }, true)
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
 
   /**
-   * Activate/show sections on load with hash links
+   * Top Navbar - Scroll background change
    */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      let initial_nav = select(window.location.hash)
+  const topnav = document.getElementById('topnav');
+  window.addEventListener('scroll', function () {
+    if (topnav) {
+      topnav.classList.toggle('scrolled', window.scrollY > 20);
+    }
+  }, { passive: true });
 
-      if (initial_nav) {
-        let header = select('#header')
-        let navlinks = select('#navbar .nav-link', true)
-
-        header.classList.add('header-top')
-
-        navlinks.forEach((item) => {
-          if (item.getAttribute('href') == window.location.hash) {
-            item.classList.add('active')
-          } else {
-            item.classList.remove('active')
-          }
-        })
-
-        setTimeout(function() {
-          initial_nav.classList.add('section-show')
-        }, 350);
-
-        scrollto(window.location.hash)
+  /**
+   * Activate section on page load if URL has a hash
+   */
+  window.addEventListener('load', function () {
+    if (window.location.hash && window.location.hash !== '#hero') {
+      const header = document.getElementById('header');
+      const allSections = document.querySelectorAll('section');
+      const target = document.querySelector(window.location.hash);
+      if (target && header) {
+        header.classList.add('header-top');
+        setActiveNavLink(window.location.hash);
+        setTimeout(function () { target.classList.add('section-show'); }, 350);
       }
     }
   });
+
+
+
+
+
 
   /**
    * Skills animation

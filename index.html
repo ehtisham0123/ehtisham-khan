@@ -31,22 +31,51 @@
 
 <body>
 
+  <!-- ======= Top Navbar ======= -->
+  <nav id="topnav" class="topnav">
+    <div class="topnav-container">
+      <!-- Logo -->
+      <a href="#hero" class="topnav-logo">
+        <span class="logo-text">Ehtisham Ahmad Khan<span class="logo-dot">.</span></span>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="topnav-links" id="topnavLinks">
+        <li><a href="#hero" class="topnav-link active" data-section="hero">Home</a></li>
+        <li><a href="#about" class="topnav-link" data-section="about">About</a></li>
+        <li><a href="#resume" class="topnav-link" data-section="resume">Resume</a></li>
+        <li><a href="#portfolio" class="topnav-link" data-section="portfolio">Portfolio</a></li>
+        <li><a href="#contact" class="topnav-link" data-section="contact">Contact</a></li>
+      </ul>
+
+      <!-- Hamburger -->
+      <button class="topnav-hamburger" id="topnavHamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="topnav-mobile-menu" id="topnavMobileMenu">
+      <ul>
+        <li><a href="#hero" class="topnav-link active" data-section="hero">Home</a></li>
+        <li><a href="#about" class="topnav-link" data-section="about">About</a></li>
+        <li><a href="#resume" class="topnav-link" data-section="resume">Resume</a></li>
+        <li><a href="#portfolio" class="topnav-link" data-section="portfolio">Portfolio</a></li>
+        <li><a href="#contact" class="topnav-link" data-section="contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav><!-- End Top Navbar -->
+
   <!-- ======= Header ======= -->
-  <header id="header">
+
+  <header id="header" data-hero="true">
     <div class="container" data-aos="fade-in">
 
       <h1><a href="index.html">Ehtisham Ahmad Khan</a></h1>
       <h2>I'm a passionate <span>Full Stack Developer</span> from Pakistan</h2>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link active" href="#header">Home</a></li>
-          <li><a class="nav-link" href="#about">About</a></li>
-          <li><a class="nav-link" href="#resume">Resume</a></li>
-          <li><a class="nav-link" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+
 
       <div class="social-links">
         <a href="https://github.com/ehtisham0123" target="_blank" class="github"><i class="bi bi-github"></i></a>
